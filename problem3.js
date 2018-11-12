@@ -2,35 +2,35 @@ const taxRate = 0.07;
 const shippingRate = 0.05; //placeholder
 
 let customer = {
-    "first_name": null,
-    "last_name": null,
-    "address": {
-            "address_1": null,
-            "address_2": null,
-            "city": null,
-            "state": null,
-            "zip": null
-     }
+  "first_name": null,
+  "last_name": null,
+  "address": {
+    "address_1": null,
+    "address_2": null,
+    "city": null,
+    "state": null,
+    "zip": null
+  }
 };
 
 let cart = [
-	customer
+  customer
 ];
 
 // Add items to cart
 function addItemToCart(id, name, quantity, price) {
-	let item = {
-  	"id": id,
+  let item = {
+    "id": id,
     "name": name,
     "quantity": quantity,
     "price": price
   }
-	cart.push(item);
+  cart.push(item);
 }
 
 // Update customer data
 function updateCustomer(first_name, last_name, address_1, address_2, city, state, zip) {
-	customer.first_name = first_name;
+  customer.first_name = first_name;
   customer.last_name = last_name;
   customer.address.address_1 =address_1;
   customer.address.address_2 = address_2;
@@ -41,15 +41,15 @@ function updateCustomer(first_name, last_name, address_1, address_2, city, state
 
 // Print out customer data
 function getCustomerData() {
-	let result = "";
-	result += "first_name: " + customer.first_name + "\n";
+  let result = "";
+  result += "first_name: " + customer.first_name + "\n";
   result += "last_name: " + customer.last_name + "\n";
   result += "address_1: " + customer.address.address_1 + "\n";
   result += "address_2: " + customer.address.address_2 + "\n";
   result += "city: " + customer.address.city + "\n";
   result += "state: " + customer.address.state + "\n";
   result += "zip: " + customer.address.zip + "\n";
-  
+
   return result;
 }
 
@@ -60,35 +60,34 @@ function getCart() {
   let shipping = 0.0;
   let subTotal = 0.0;
   let total = 0.0;
-  
+
   for (let each in cart) {
-     //console.log(cart[each]);
-     if (cart[each].first_name) {
-         continue;
-     }
-     if (cart[each].price && cart[each].quantity) {
-        subTotal += (cart[each].price * cart[each].quantity);
-     }
-     let item = Object.entries(cart[each]);
-     result += "Product " + each + " \n";
-     for (let field in item) {
-       result += item[field].join(": ") + "\n";
-     }
-   
-   result += "\n";
+    if (cart[each].first_name) {
+    continue;
+  }
+  if (cart[each].price && cart[each].quantity) {
+    subTotal += (cart[each].price * cart[each].quantity);
+  }
+  let item = Object.entries(cart[each]);
+  result += "Product " + each + " \n";
+  for (let field in item) {
+    result += item[field].join(": ") + "\n";
   }
 
-	tax = subTotal * taxRate;
+  result += "\n";
+  }
+
+  tax = subTotal * taxRate;
   shipping = subTotal * shippingRate;
   total = subTotal + tax + shipping;
-  
+
   tax = tax.toFixed(2);
-	shipping = shipping.toFixed(2);
+  shipping = shipping.toFixed(2);
   subTotal = subTotal.toFixed(2);
   total = total.toFixed(2);
-  
+
   result += "Subtotal: $" + subTotal + "\n" + "Tax: $" + tax + "\n" + "Shipping: $" + shipping + "\n" + "Total: $" + total;
-  
+
   return result;
 }
 

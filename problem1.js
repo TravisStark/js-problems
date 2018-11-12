@@ -118,30 +118,30 @@ const guests = [
 
 
 function getGuestDetails(id) {
-	let results = '';
+  let results = '';
   for (let each in guests) {
     if (guests[each].guest_id == id) {
-    let guestsObj = guests[each];
-  
+      let guestsObj = guests[each];
+
       for (let each in guestsObj) {
-      	let values = guestsObj[each];
-        
+        let values = guestsObj[each];
+
         if (typeof values === 'object' && values) {
-            results += each + '\n';
-            for(let row in values[0]){
-              results += '\t' + row + ': ' + values[0][row] + '\n';
-            }
+          results += each + '\n';
+          for(let row in values[0]){
+            results += '\t' + row + ': ' + values[0][row] + '\n';
+          }
         }
         else if (typeof values === 'object' && !values) {
-        		results += each + ': ' + "" + '\n';
+          results += each + ': ' + "" + '\n';
         }
         else {
-           	results += each + ': ' + guestsObj[each] + '\n';
-       	}
-    	}
-		}
+          results += each + ': ' + guestsObj[each] + '\n';
+        }
+      }
+    }
   }
- 
+
   if (results == '') {
     results = 'No Guests with that ID';
   }

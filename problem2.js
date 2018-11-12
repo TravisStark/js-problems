@@ -132,23 +132,23 @@ function compare(key) {
 
   return function(a, b) {
 
-    for (let each in key) {
-      a = a[key[each]];
-      b = b[key[each]];
-    }
+  for (let each in key) {
+    a = a[key[each]];
+    b = b[key[each]];
+  }
 
-    a = typeof a === "string" ? a.toLowerCase() : a;
-    b = typeof b === "string" ? b.toLowerCase() : b;
+  a = typeof a === "string" ? a.toLowerCase() : a;
+  b = typeof b === "string" ? b.toLowerCase() : b;
 
-    if (a > b) {
-      result = 1;
-    } else if (a < b) {
-      result = -1;
-    } else {
-      result = 0;
-    }
+  if (a > b) {
+    result = 1;
+  } else if (a < b) {
+    result = -1;
+  } else {
+    result = 0;
+  }
 
-    return result;
+  return result;
   };
 }
 
